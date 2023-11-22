@@ -9,19 +9,21 @@ from . import models
 
 
 class ContactForms(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
-        self.fields['first_name'].widget.attrs.update({
-            'class': 'classe-a cllasse-b',
-            'placeholder': 'Escreva Aqui',
-        })
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/*',
+            }
+        )
+    )
 
     class Meta:
         model = models.Contact
         fields = (
             'first_name', 'last_name', 'phone',
             'email', 'description', 'category',
+            'picture',
         )
         
     
